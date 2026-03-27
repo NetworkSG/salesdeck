@@ -1,0 +1,1552 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Network Leads 2026</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f0f0ee;
+    --white: #ffffff;
+    --black: #0a0a0a;
+    --grey: #888888;
+    --light-grey: #d8d8d5;
+    --yellow: #F2C227;
+    --yellow-dark: #d9a800;
+    --card-bg: #ffffff;
+    --accent-bar: #F2C227;
+    --slide-w: 1440px;
+    --slide-h: 810px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    font-family: 'DM Sans', sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+    gap: 32px;
+  }
+
+  /* NAV */
+  .deck-nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    background: #111;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 10px 20px;
+    z-index: 999;
+    flex-wrap: wrap;
+  }
+  .deck-nav button {
+    background: transparent;
+    border: 1px solid #333;
+    color: #aaa;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    padding: 5px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .deck-nav button:hover {
+    border-color: var(--yellow);
+    color: var(--yellow);
+  }
+
+  /* SLIDE WRAPPER */
+  .slide-wrapper {
+    width: 100%;
+    max-width: var(--slide-w);
+    scroll-margin-top: 50px;
+  }
+  .slide-label {
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: #555;
+    margin-bottom: 8px;
+    padding-left: 4px;
+  }
+
+  .slide {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg);
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    box-shadow: 0 8px 60px rgba(0,0,0,0.5);
+  }
+
+  /* N MOTIF */
+  .n-motif {
+    position: absolute;
+    right: 0; top: 0;
+    width: 45%;
+    height: 100%;
+    pointer-events: none;
+  }
+  .n-motif svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* NETWORK LOGO */
+  .network-logo {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 700;
+    font-size: clamp(12px, 1.4vw, 20px);
+    letter-spacing: 0.18em;
+    color: var(--black);
+    text-transform: uppercase;
+  }
+
+  /* YELLOW ACCENT BAR */
+  .accent-bar {
+    display: inline-block;
+    width: 4px;
+    height: 1.1em;
+    background: var(--yellow);
+    margin-right: 10px;
+    vertical-align: middle;
+    flex-shrink: 0;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    font-weight: 700;
+    font-size: clamp(14px, 1.8vw, 26px);
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 1: COVER
+  ───────────────────────────── */
+  #s1 .network-logo { top: 4%; right: 4%; }
+  #s1 .cover-title {
+    position: absolute;
+    left: 9%;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  #s1 .cover-title h1 {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    font-size: clamp(28px, 5.5vw, 80px);
+    color: var(--black);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  #s1 .cover-title h1 strong {
+    font-weight: 700;
+  }
+  #s1 .cover-title .year-tag {
+    font-size: clamp(10px, 1.2vw, 17px);
+    font-weight: 400;
+    color: var(--grey);
+    letter-spacing: 0.04em;
+    margin-top: 10px;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 2: TRUSTED BY
+  ───────────────────────────── */
+  #s2 .trusted-pill {
+    position: absolute;
+    top: 7%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1.5px solid var(--black);
+    border-radius: 999px;
+    padding: 6px 24px;
+    font-size: clamp(10px, 1.1vw, 16px);
+    font-weight: 600;
+    color: var(--black);
+    white-space: nowrap;
+    letter-spacing: 0.02em;
+  }
+  #s2 .trusted-grid {
+    position: absolute;
+    top: 20%;
+    left: 4%;
+    right: 4%;
+    bottom: 12%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+  }
+  .trusted-card {
+    background: var(--white);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 5% 6%;
+    gap: 4%;
+  }
+  .trusted-card h3 {
+    font-weight: 800;
+    font-size: clamp(12px, 1.6vw, 23px);
+    color: var(--black);
+    letter-spacing: -0.01em;
+  }
+  .trusted-card p {
+    font-size: clamp(8px, 0.85vw, 12px);
+    color: var(--grey);
+    text-align: center;
+    line-height: 1.4;
+  }
+  .logo-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+    width: 100%;
+    margin-top: auto;
+  }
+  .logo-pill {
+    background: var(--bg);
+    border-radius: 8px;
+    height: clamp(24px, 3vw, 44px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(7px, 0.7vw, 10px);
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  #s2 .more-text {
+    position: absolute;
+    bottom: 3%;
+    left: 50%;
+    transform: translateX(-50%);
+    font-weight: 700;
+    font-size: clamp(10px, 1.2vw, 17px);
+    color: var(--black);
+    letter-spacing: 0.02em;
+  }
+  #s2 .portfolio-link {
+    position: absolute;
+    bottom: 3%;
+    right: 4%;
+    font-size: clamp(8px, 0.8vw, 11px);
+    color: var(--grey);
+    text-decoration: underline;
+    cursor: pointer;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 3: CLIENT PORTFOLIO + STATS
+  ───────────────────────────── */
+  #s3 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s3 .logo-mosaic {
+    position: absolute;
+    top: 18%;
+    left: 5%;
+    right: 5%;
+    height: 38%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 10px;
+  }
+  .mosaic-logo {
+    background: var(--white);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: clamp(7px, 0.75vw, 11px);
+    color: var(--black);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+  }
+  #s3 .stats-row {
+    position: absolute;
+    bottom: 5%;
+    left: 5%;
+    right: 5%;
+    height: 28%;
+    background: var(--white);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    overflow: hidden;
+  }
+  .stat-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+    position: relative;
+  }
+  .stat-block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 20%; bottom: 20%;
+    width: 1px;
+    background: var(--light-grey);
+  }
+  .stat-dot {
+    width: 10px; height: 10px;
+    background: var(--yellow);
+    border-radius: 50%;
+    margin-bottom: 8px;
+  }
+  .stat-num {
+    font-weight: 800;
+    font-size: clamp(20px, 3.5vw, 52px);
+    color: var(--black);
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: clamp(8px, 0.9vw, 13px);
+    color: var(--black);
+    font-weight: 600;
+    margin-top: 4px;
+    text-align: center;
+  }
+  .stat-sub {
+    font-size: clamp(7px, 0.7vw, 10px);
+    color: var(--grey);
+    margin-top: 2px;
+    text-align: center;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 4: LEAD SUPPLY STABILITY
+  ───────────────────────────── */
+  #s4 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s4 .dashboard-cta {
+    position: absolute;
+    top: 7%;
+    left: 38%;
+    background: var(--yellow);
+    border-radius: 999px;
+    padding: 6px 18px;
+    font-size: clamp(8px, 0.85vw, 12px);
+    font-weight: 700;
+    color: var(--black);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    letter-spacing: 0.03em;
+    text-decoration: none;
+  }
+  #s4 .dashboard-cta::after { content: ' →'; }
+  #s4 .stats-4grid {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 2%;
+  }
+  .stat-card-4 {
+    background: var(--white);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .stat-card-4 .big-num {
+    font-weight: 800;
+    font-size: clamp(24px, 4vw, 58px);
+    color: var(--black);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .stat-card-4 .stat-desc {
+    font-size: clamp(9px, 0.95vw, 14px);
+    color: var(--grey);
+    font-weight: 500;
+  }
+  .stat-card-4 .stat-note {
+    font-size: clamp(7px, 0.65vw, 10px);
+    color: var(--light-grey);
+    letter-spacing: 0.04em;
+  }
+  #s4 .dashboard-preview {
+    position: absolute;
+    right: 5%;
+    top: 20%;
+    bottom: 8%;
+    width: 46%;
+    background: var(--white);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    padding: 5%;
+  }
+  #s4 .dash-placeholder {
+    width: 100%;
+    flex: 1;
+    background: var(--bg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 6px;
+  }
+  #s4 .dash-placeholder p {
+    font-size: clamp(8px, 0.8vw, 11px);
+    color: var(--grey);
+    text-align: center;
+    font-style: italic;
+  }
+  #s4 .dash-annotation {
+    font-size: clamp(7px, 0.7vw, 10px);
+    color: var(--grey);
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 5: HOW WE NURTURE
+  ───────────────────────────── */
+  #s5 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s5 .nurture-grid {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5%;
+  }
+  .nurture-card {
+    background: var(--white);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    padding: 5% 6%;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+  .nurture-card h4 {
+    font-weight: 700;
+    font-size: clamp(10px, 1.1vw, 16px);
+    color: var(--black);
+    line-height: 1.2;
+    text-align: center;
+  }
+  .nurture-card .nurture-link {
+    background: var(--yellow);
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: clamp(7px, 0.7vw, 10px);
+    font-weight: 700;
+    color: var(--black);
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: auto;
+    letter-spacing: 0.03em;
+  }
+  .nurture-screenshot {
+    flex: 1;
+    background: var(--bg);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(7px, 0.7vw, 10px);
+    color: var(--grey);
+    font-style: italic;
+    text-align: center;
+    padding: 8px;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 6: GROUP CHAT EXPERIENCE (NEW)
+  ───────────────────────────── */
+  #s6 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s6 .gchat-layout {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 2%;
+  }
+  #s6 .gchat-left {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 5%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  #s6 .gchat-left h4 {
+    font-weight: 700;
+    font-size: clamp(10px, 1.1vw, 16px);
+    color: var(--black);
+  }
+  .gchat-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .gchat-dot {
+    width: 6px; height: 6px;
+    background: var(--yellow);
+    border-radius: 50%;
+    margin-top: 5px;
+    flex-shrink: 0;
+  }
+  .gchat-item p {
+    font-size: clamp(8px, 0.85vw, 12px);
+    color: var(--grey);
+    line-height: 1.4;
+  }
+  .gchat-item p strong { color: var(--black); }
+  #s6 .gchat-screenshot {
+    background: var(--white);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5%;
+    gap: 10px;
+  }
+  #s6 .gchat-screenshot .ph {
+    width: 100%;
+    flex: 1;
+    background: var(--bg);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(8px, 0.8vw, 11px);
+    color: var(--grey);
+    font-style: italic;
+    text-align: center;
+    padding: 12px;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 7: LEAD DELIVERY EXPECTATIONS
+  ───────────────────────────── */
+  #s7 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s7 .delivery-layout {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-rows: auto 1fr;
+    gap: 2%;
+  }
+  #s7 .messaging-card {
+    background: var(--white);
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 4%;
+    gap: 6px;
+  }
+  #s7 .messaging-card .msg-sub {
+    font-size: clamp(8px, 0.85vw, 12px);
+    color: var(--grey);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  #s7 .messaging-card .msg-main {
+    font-weight: 800;
+    font-size: clamp(13px, 1.6vw, 24px);
+    color: var(--black);
+    letter-spacing: -0.02em;
+    text-align: center;
+  }
+  #s7 .messaging-card .msg-main span {
+    background: var(--yellow);
+    padding: 2px 10px;
+    border-radius: 4px;
+  }
+  #s7 .delivery-nums {
+    background: var(--white);
+    border-radius: 14px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    overflow: hidden;
+  }
+  .delivery-num-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4%;
+    position: relative;
+  }
+  .delivery-num-block:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0; top: 20%; bottom: 20%;
+    width: 1px;
+    background: var(--light-grey);
+  }
+  .delivery-num-block .d-num {
+    font-weight: 800;
+    font-size: clamp(26px, 4.5vw, 64px);
+    color: var(--black);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+  .delivery-num-block .d-unit {
+    font-size: clamp(9px, 0.9vw, 13px);
+    color: var(--grey);
+    font-weight: 500;
+    margin-top: 4px;
+  }
+  .delivery-num-block .d-note {
+    font-size: clamp(7px, 0.65vw, 9px);
+    color: var(--light-grey);
+    margin-top: 3px;
+    letter-spacing: 0.03em;
+  }
+  #s7 .replacement-badge {
+    position: absolute;
+    bottom: 8%;
+    right: 5%;
+    background: var(--black);
+    color: var(--white);
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: clamp(7px, 0.75vw, 11px);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 8: SOCIAL PROOF (WALL)
+  ───────────────────────────── */
+  #s8 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s8 .proof-sub {
+    position: absolute;
+    top: 7%;
+    left: 22%;
+    font-size: clamp(8px, 0.85vw, 12px);
+    color: var(--grey);
+    font-style: italic;
+  }
+  #s8 .proof-wall {
+    position: absolute;
+    top: 18%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .proof-tile {
+    background: var(--white);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 8px 10px;
+    overflow: hidden;
+  }
+  .proof-tile.large {
+    grid-column: span 2;
+  }
+  .proof-tile .pt-header {
+    font-size: clamp(7px, 0.65vw, 9px);
+    font-weight: 700;
+    color: var(--yellow-dark);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  .proof-tile .pt-text {
+    font-size: clamp(7px, 0.7vw, 10px);
+    color: var(--black);
+    line-height: 1.4;
+    flex: 1;
+    margin: 4px 0;
+  }
+  .proof-tile .pt-footer {
+    font-size: clamp(6px, 0.6vw, 9px);
+    color: var(--grey);
+    font-weight: 500;
+  }
+  .proof-tile.placeholder-ph {
+    background: var(--bg);
+    border: 1.5px dashed var(--light-grey);
+    align-items: center;
+    justify-content: center;
+  }
+  .proof-tile.placeholder-ph p {
+    font-size: clamp(6px, 0.6vw, 9px);
+    color: var(--light-grey);
+    font-style: italic;
+    text-align: center;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 9: SOCIAL PROOF (ID CLIENT SIDE)
+  ───────────────────────────── */
+  #s9 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s9 .proof-sub {
+    position: absolute;
+    top: 7%;
+    left: 22%;
+    font-size: clamp(8px, 0.85vw, 12px);
+    color: var(--grey);
+    font-style: italic;
+  }
+  #s9 .proof-wall {
+    position: absolute;
+    top: 18%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 10: AVG PROJECT DEMOGRAPHICS
+  ───────────────────────────── */
+  #s10 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s10 .demo-grid {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    bottom: 8%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2%;
+  }
+  .demo-card {
+    background: var(--white);
+    border-radius: 16px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .demo-card-header {
+    background: var(--black);
+    color: var(--white);
+    font-weight: 700;
+    font-size: clamp(9px, 1vw, 14px);
+    text-align: center;
+    padding: 6% 4%;
+    letter-spacing: 0.02em;
+  }
+  .demo-card-body {
+    flex: 1;
+    padding: 6% 8%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .demo-row {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .demo-row-label {
+    font-size: clamp(7px, 0.75vw, 11px);
+    color: var(--grey);
+    flex: 1;
+    line-height: 1.3;
+  }
+  .demo-row-pct {
+    font-size: clamp(8px, 0.85vw, 12px);
+    font-weight: 700;
+    color: var(--black);
+    min-width: 30px;
+    text-align: right;
+  }
+  .demo-bar-wrap {
+    flex: 1.5;
+    height: 4px;
+    background: var(--bg);
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .demo-bar-fill {
+    height: 100%;
+    background: var(--yellow);
+    border-radius: 2px;
+  }
+  #s10 .dash-link {
+    position: absolute;
+    bottom: 8%;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--yellow);
+    border-radius: 999px;
+    padding: 7px 22px;
+    font-size: clamp(8px, 0.85vw, 12px);
+    font-weight: 700;
+    color: var(--black);
+    cursor: pointer;
+    text-decoration: none;
+    letter-spacing: 0.03em;
+    white-space: nowrap;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 11: INSTAGRAM COLLAB
+  ───────────────────────────── */
+  #s11 .section-label {
+    position: absolute;
+    top: 7%;
+    left: 5%;
+  }
+  #s11 .ig-grid {
+    position: absolute;
+    top: 20%;
+    left: 5%;
+    right: 5%;
+    bottom: 22%;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5%;
+  }
+  .ig-card {
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .ig-card-preview {
+    flex: 1;
+    background: var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(7px, 0.7vw, 10px);
+    color: var(--grey);
+    font-style: italic;
+    text-align: center;
+    padding: 10px;
+  }
+  .ig-card-tag {
+    padding: 6px 10px;
+    font-size: clamp(7px, 0.7vw, 10px);
+    font-weight: 600;
+    color: var(--grey);
+    background: var(--white);
+    border-top: 1px solid var(--bg);
+  }
+  #s11 .benefit-tags {
+    position: absolute;
+    bottom: 8%;
+    left: 5%;
+    right: 5%;
+    display: flex;
+    gap: 1%;
+    flex-wrap: wrap;
+  }
+  .benefit-tag {
+    background: var(--yellow);
+    border-radius: 999px;
+    padding: 6px 16px;
+    font-size: clamp(8px, 0.85vw, 12px);
+    font-weight: 700;
+    color: var(--black);
+    letter-spacing: 0.01em;
+  }
+
+  /* ─────────────────────────────
+     SLIDE 12: CLOSING
+  ───────────────────────────── */
+  #s12 .closing-content {
+    position: absolute;
+    left: 9%;
+    bottom: 12%;
+  }
+  #s12 .closing-content h2 {
+    font-weight: 300;
+    font-size: clamp(20px, 3.5vw, 50px);
+    color: var(--black);
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+  }
+  #s12 .closing-content h2 strong { font-weight: 800; }
+  #s12 .closing-content .contact-row {
+    display: flex;
+    gap: 32px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  #s12 .contact-item {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  #s12 .contact-item .c-label {
+    font-size: clamp(8px, 0.8vw, 11px);
+    color: var(--grey);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  #s12 .contact-item .c-val {
+    font-size: clamp(10px, 1.1vw, 16px);
+    color: var(--black);
+    font-weight: 500;
+  }
+
+  /* SCROLLBAR */
+  body::-webkit-scrollbar { width: 4px; }
+  body::-webkit-scrollbar-track { background: #111; }
+  body::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
+
+  @media (max-width: 600px) {
+    body { padding: 50px 10px 20px; gap: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<div class="deck-nav">
+  <button onclick="document.getElementById('s1').scrollIntoView({behavior:'smooth'})">Cover</button>
+  <button onclick="document.getElementById('s2').scrollIntoView({behavior:'smooth'})">Trusted By</button>
+  <button onclick="document.getElementById('s3').scrollIntoView({behavior:'smooth'})">Portfolio</button>
+  <button onclick="document.getElementById('s4').scrollIntoView({behavior:'smooth'})">Lead Supply</button>
+  <button onclick="document.getElementById('s5').scrollIntoView({behavior:'smooth'})">Nurture</button>
+  <button onclick="document.getElementById('s6').scrollIntoView({behavior:'smooth'})">Group Chat</button>
+  <button onclick="document.getElementById('s7').scrollIntoView({behavior:'smooth'})">Delivery</button>
+  <button onclick="document.getElementById('s8').scrollIntoView({behavior:'smooth'})">Proof (HO)</button>
+  <button onclick="document.getElementById('s9').scrollIntoView({behavior:'smooth'})">Proof (ID)</button>
+  <button onclick="document.getElementById('s10').scrollIntoView({behavior:'smooth'})">Demographics</button>
+  <button onclick="document.getElementById('s11').scrollIntoView({behavior:'smooth'})">IG Collab</button>
+  <button onclick="document.getElementById('s12').scrollIntoView({behavior:'smooth'})">Closing</button>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 1: COVER
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s1">
+  <div class="slide-label">01 / Cover</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.7"/>
+        <polygon points="250,0 400,0 600,360 600,540" fill="#ddddd9" opacity="0.5"/>
+        <polygon points="0,0 100,0 450,810 350,810" fill="#e4e4e0" opacity="0.4"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="cover-title">
+      <h1>Network <strong>Leads</strong></h1>
+      <div class="year-tag">@ 2026 &nbsp;·&nbsp; Built for Interior Design Firms</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 2: TRUSTED BY
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s2">
+  <div class="slide-label">02 / Trusted By Interior Design Firms</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+        <polygon points="250,0 400,0 600,360 600,540" fill="#ddddd9" opacity="0.35"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="trusted-pill">Trusted By Interior Design Firms</div>
+    <div class="trusted-grid">
+      <!-- Renovator -->
+      <div class="trusted-card">
+        <h3>Renovator</h3>
+        <p>Focuses on simple upgrades or partial renovations</p>
+        <div class="logo-grid">
+          <div class="logo-pill">ART DECOR</div>
+          <div class="logo-pill">CRAFTMAKERS</div>
+          <div class="logo-pill">LOGO 3</div>
+          <div class="logo-pill">LOGO 4</div>
+          <div class="logo-pill">LOGO 5</div>
+          <div class="logo-pill">LOGO 6</div>
+          <div class="logo-pill">LOGO 7</div>
+          <div class="logo-pill">LOGO 8</div>
+        </div>
+      </div>
+      <!-- Design Consultant -->
+      <div class="trusted-card">
+        <h3>Design Consultant</h3>
+        <p>Plans, designs, and manages the full space transformation</p>
+        <div class="logo-grid">
+          <div class="logo-pill">NOBLE DESIGN</div>
+          <div class="logo-pill">SPACIOUS PLANNERS</div>
+          <div class="logo-pill">SG INTERIOR</div>
+          <div class="logo-pill">LOGO 4</div>
+          <div class="logo-pill">LOGO 5</div>
+          <div class="logo-pill">LOGO 6</div>
+          <div class="logo-pill">LOGO 7</div>
+          <div class="logo-pill">LOGO 8</div>
+        </div>
+      </div>
+      <!-- Builder / Architect -->
+      <div class="trusted-card">
+        <h3>Builder / Architect</h3>
+        <p>Execution-focused. Builds based on given instructions</p>
+        <div class="logo-grid">
+          <div class="logo-pill">RENO BEE</div>
+          <div class="logo-pill">KINGSMAKER</div>
+          <div class="logo-pill">LOGO 3</div>
+          <div class="logo-pill">LOGO 4</div>
+          <div class="logo-pill">LOGO 5</div>
+          <div class="logo-pill">LOGO 6</div>
+          <div class="logo-pill">LOGO 7</div>
+          <div class="logo-pill">LOGO 8</div>
+        </div>
+      </div>
+    </div>
+    <div class="more-text">And many more.</div>
+    <a class="portfolio-link" href="https://www.networksg.net" target="_blank">View full client portfolio → networksg.net</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 3: CLIENT PORTFOLIO + STATS
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s3">
+  <div class="slide-label">03 / Client Portfolio</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label"><span class="accent-bar"></span>Client Portfolio</div>
+    <div class="logo-mosaic">
+      <div class="mosaic-logo">9 ATELIER</div>
+      <div class="mosaic-logo">KOSY LIVING</div>
+      <div class="mosaic-logo">SPACIOUS PLANNERS</div>
+      <div class="mosaic-logo">FLO DESIGN</div>
+      <div class="mosaic-logo">POSH HOME</div>
+      <div class="mosaic-logo">CURATEDCO</div>
+      <div class="mosaic-logo">EMPYREAN DESIGN</div>
+      <div class="mosaic-logo">SPACE CHANGE</div>
+      <div class="mosaic-logo">LOGO 9</div>
+      <div class="mosaic-logo">LOGO 10</div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-block">
+        <div class="stat-dot"></div>
+        <div class="stat-num">120+</div>
+        <div class="stat-label">Total Firms Serviced</div>
+        <div class="stat-sub">by 2026</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-dot"></div>
+        <div class="stat-num">30</div>
+        <div class="stat-label">Actively Programmed</div>
+        <div class="stat-sub">Lead Programme Clients</div>
+      </div>
+      <div class="stat-block">
+        <div class="stat-dot"></div>
+        <div class="stat-num">70</div>
+        <div class="stat-label">Branding & Marketing</div>
+        <div class="stat-sub">Active Clients</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 4: LEAD SUPPLY STABILITY
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s4">
+  <div class="slide-label">04 / Lead Supply Stability</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>Lead Supply Stability</div>
+    <a class="dashboard-cta" href="#" target="_blank">View Live Dashboard</a>
+
+    <!-- Stats (left side) -->
+    <div style="position:absolute;top:20%;left:5%;width:46%;bottom:8%;display:grid;grid-template-columns:repeat(2,1fr);grid-template-rows:repeat(2,1fr);gap:2%;">
+      <div class="stat-card-4">
+        <div class="big-num">1,683+</div>
+        <div class="stat-desc">Total Leads Generated</div>
+        <div class="stat-note">LIVE · UPDATES AUTOMATICALLY</div>
+      </div>
+      <div class="stat-card-4">
+        <div class="big-num">92%</div>
+        <div class="stat-desc">Response Rate</div>
+      </div>
+      <div class="stat-card-4">
+        <div class="big-num">754</div>
+        <div class="stat-desc">Qualified Homeowners</div>
+        <div class="stat-note">BUDGET 30K+ · WITHIN 6 MONTHS</div>
+      </div>
+      <div class="stat-card-4">
+        <div class="big-num">43%</div>
+        <div class="stat-desc">Qualification Rate</div>
+        <div class="stat-note">INDUSTRY BENCHMARK</div>
+      </div>
+    </div>
+
+    <!-- Dashboard preview (right side) -->
+    <div class="dashboard-preview" style="position:absolute;right:5%;top:20%;bottom:8%;width:46%;background:var(--white);border-radius:16px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:5%;gap:10px;">
+      <div style="width:100%;flex:1;background:var(--bg);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px;padding:12px;">
+        <p style="font-size:clamp(8px,0.8vw,11px);color:var(--grey);text-align:center;font-style:italic;">Dashboard screenshot goes here<br>Ask Tristan for the live link + screenshot</p>
+      </div>
+      <p style="font-size:clamp(7px,0.7vw,10px);color:var(--grey);text-align:center;line-height:1.5;">Look at <strong>Total Leads</strong>, <strong>Qualification Rate</strong>, and <strong>Response Rate</strong> columns. Data updates in real time.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 5: HOW WE NURTURE
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s5">
+  <div class="slide-label">05 / How We Nurture Our Leads</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>How We Nurture Our Leads</div>
+    <div class="nurture-grid">
+      <div class="nurture-card">
+        <h4>Call Logs</h4>
+        <div class="nurture-screenshot">Screenshot of successful call logs placeholder</div>
+        <a href="#" class="nurture-link">View Call Logs →</a>
+      </div>
+      <div class="nurture-card">
+        <h4>Screenshots of Follow-Ups</h4>
+        <div class="nurture-screenshot">Follow-up chat screenshots placeholder</div>
+      </div>
+      <div class="nurture-card">
+        <h4>Screen Recordings of Conversations</h4>
+        <div class="nurture-screenshot">Screen recording thumbnail placeholder</div>
+        <a href="#" class="nurture-link">Watch Recording →</a>
+      </div>
+      <div class="nurture-card">
+        <h4>How We Filter Low-Intent Leads</h4>
+        <div class="nurture-screenshot">Example of filtered lead scenario — shows quality control process</div>
+        <div style="font-size:clamp(7px,0.65vw,9px);color:var(--grey);text-align:center;line-height:1.4;margin-top:auto;">Quality benchmark: 30K+ budget, renovation within 6 months</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 6: GROUP CHAT EXPERIENCE (NEW)
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s6">
+  <div class="slide-label">06 / What Working With Us Looks Like (NEW SLIDE)</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>What Working With Us Looks Like</div>
+    <div class="gchat-layout">
+      <div class="gchat-left">
+        <h4>Inside Your Group Chat with Network</h4>
+        <div class="gchat-item">
+          <div class="gchat-dot"></div>
+          <p><strong>Lead profile delivered</strong> with full homeowner details: name, number, budget, property type, timeline</p>
+        </div>
+        <div class="gchat-item">
+          <div class="gchat-dot"></div>
+          <p><strong>Context on how to reach out</strong> — what to say, what the homeowner responded to, what they're looking for</p>
+        </div>
+        <div class="gchat-item">
+          <div class="gchat-dot"></div>
+          <p><strong>Reference photos</strong> the homeowner actually liked — so your first call is already warm</p>
+        </div>
+        <div class="gchat-item">
+          <div class="gchat-dot"></div>
+          <p><strong>Booking guidance</strong> — how to set the appointment and what to lead with</p>
+        </div>
+        <div class="gchat-item">
+          <div class="gchat-dot"></div>
+          <p><strong>Ongoing follow-up support</strong> from your dedicated caller in the group</p>
+        </div>
+      </div>
+      <div class="gchat-screenshot">
+        <div class="ph">Group chat screenshot goes here<br><br>Show a real example of how a lead gets delivered in the group with context, reference photos, and booking notes</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 7: LEAD DELIVERY EXPECTATIONS
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s7">
+  <div class="slide-label">07 / Lead Delivery Expectations</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>Lead Delivery Expectations</div>
+    <div class="delivery-layout">
+      <div class="messaging-card">
+        <div class="msg-sub">Sales Messaging</div>
+        <div class="msg-main">Qualified Leads = Consistent Volume, <span>Matched to Your Firm.</span></div>
+      </div>
+      <div class="delivery-nums">
+        <div class="delivery-num-block">
+          <div class="d-num">15–20</div>
+          <div class="d-unit">leads / month</div>
+          <div class="d-note">TYPICAL DELIVERY</div>
+        </div>
+        <div class="delivery-num-block">
+          <div class="d-num">30K+</div>
+          <div class="d-unit">avg. renovation budget</div>
+          <div class="d-note">QUALITY BENCHMARK</div>
+        </div>
+      </div>
+    </div>
+    <div class="replacement-badge">✓ Replacement Policy Available</div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 8: SOCIAL PROOF (HOMEOWNER)
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s8">
+  <div class="slide-label">08 / Social Proof — Homeowner Trust</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>Social Proof</div>
+    <div class="proof-sub">Homeowners trust us</div>
+    <div class="proof-wall">
+      <!-- Tile 1: Large readable proof -->
+      <div class="proof-tile large">
+        <div class="pt-header">Homeowner · Deal Closed</div>
+        <div class="pt-text">"Hi Sara, just wanted to inform you that I have officially chosen De Exclusive. Your 1st choice stole my heart. Also wanna special mention to Iffah from Explore Living. They were great choices."</div>
+        <div class="pt-footer">WhatsApp · Verified</div>
+      </div>
+      <!-- Tiles 2-15: placeholders for volume -->
+      <div class="proof-tile"><div class="pt-header">Homeowner</div><div class="pt-text">"Haha yessss omg. Obsessed is the word for it. So nice to have a sanctuary of your own."</div><div class="pt-footer">WhatsApp</div></div>
+      <div class="proof-tile"><div class="pt-header">Homeowner</div><div class="pt-text">"Yes they contacted me. Thank you so much Jann."</div><div class="pt-footer">WhatsApp</div></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 9: SOCIAL PROOF (ID CLIENT)
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s9">
+  <div class="slide-label">09 / Social Proof — ID Firms Trust Us</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>Social Proof</div>
+    <div class="proof-sub">ID firms rate our leads</div>
+    <div class="proof-wall">
+      <div class="proof-tile large">
+        <div class="pt-header">ID Firm Client · Lead Quality</div>
+        <div class="pt-text">"Are there any landed leads coming in as well? Or even commercial. We had 2/3 closing for landed. And 1/1 for commercial. So stats is quite good too. I'll be able to give a review if you'll need it."</div>
+        <div class="pt-footer">Heiriq Lee · WhatsApp Group</div>
+      </div>
+      <div class="proof-tile"><div class="pt-header">ID Firm · Deal Closed</div><div class="pt-text">"This one successfully Close Deal."</div><div class="pt-footer">JJ on LBC · Group Chat</div></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+      <div class="proof-tile placeholder-ph"><p>Screenshot<br>placeholder</p></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 10: AVERAGE PROJECT DEMOGRAPHICS
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s10">
+  <div class="slide-label">10 / Average Project Demographics</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>Average Project Demographics</div>
+    <div class="demo-grid">
+      <!-- Budget Distribution -->
+      <div class="demo-card">
+        <div class="demo-card-header">Budget Distribution</div>
+        <div class="demo-card-body">
+          <div class="demo-row">
+            <div class="demo-row-label">30K – 50K</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:44%"></div></div>
+            <div class="demo-row-pct">44%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">50K – 80K</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:12%"></div></div>
+            <div class="demo-row-pct">12%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">80K – 100K</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:4%"></div></div>
+            <div class="demo-row-pct">4%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">100K – 200K</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:3%"></div></div>
+            <div class="demo-row-pct">3%</div>
+          </div>
+        </div>
+      </div>
+      <!-- Property Types -->
+      <div class="demo-card">
+        <div class="demo-card-header">Property Types</div>
+        <div class="demo-card-body">
+          <div class="demo-row">
+            <div class="demo-row-label">Resale</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:28%"></div></div>
+            <div class="demo-row-pct">28%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">BTO</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:19%"></div></div>
+            <div class="demo-row-pct">19%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">Condo</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:18%"></div></div>
+            <div class="demo-row-pct">18%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">HDB</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:16%"></div></div>
+            <div class="demo-row-pct">16%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">Landed</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:6%"></div></div>
+            <div class="demo-row-pct">6%</div>
+          </div>
+        </div>
+      </div>
+      <!-- Project Scope -->
+      <div class="demo-card">
+        <div class="demo-card-header">Project Scope</div>
+        <div class="demo-card-body">
+          <div class="demo-row">
+            <div class="demo-row-label">Full Home Renovation</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:48%"></div></div>
+            <div class="demo-row-pct">48%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">Partial Renovation</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:22%"></div></div>
+            <div class="demo-row-pct">22%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">Design &amp; Build</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:18%"></div></div>
+            <div class="demo-row-pct">18%</div>
+          </div>
+          <div class="demo-row">
+            <div class="demo-row-label">Carpentry Only</div>
+            <div class="demo-bar-wrap"><div class="demo-bar-fill" style="width:12%"></div></div>
+            <div class="demo-row-pct">12%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a class="dash-link" href="#" target="_blank">View Live Public Dashboard →</a>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 11: INSTAGRAM COLLAB
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s11">
+  <div class="slide-label">11 / Instagram Collaboration Strategy</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="section-label" style="position:absolute;top:7%;left:5%;"><span class="accent-bar"></span>Instagram Collaboration Strategy</div>
+    <div class="ig-grid">
+      <div class="ig-card">
+        <div class="ig-card-preview">House Tour Video<br>(Ask Troy to select)</div>
+        <div class="ig-card-tag">@networksingapore + firm</div>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-preview">Designer POV / Tips Video<br>(Long-form style)</div>
+        <div class="ig-card-tag">@networksingapore + firm</div>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-preview">Renovation Process Video<br>(Before/after)</div>
+        <div class="ig-card-tag">@networksingapore + firm</div>
+      </div>
+      <div class="ig-card">
+        <div class="ig-card-preview">Homeowner Story<br>(Collab format)</div>
+        <div class="ig-card-tag">@networksingapore + firm</div>
+      </div>
+    </div>
+    <div class="benefit-tags">
+      <div class="benefit-tag">Builds Social Proof</div>
+      <div class="benefit-tag">Positions Firms as Credible</div>
+      <div class="benefit-tag">Exposes Them to High-Intent Homeowners</div>
+      <div class="benefit-tag">Creates FOMO Positioning</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════
+     SLIDE 12: CLOSING
+══════════════════════════════════ -->
+<div class="slide-wrapper" id="s12">
+  <div class="slide-label">12 / Closing</div>
+  <div class="slide">
+    <div class="n-motif">
+      <svg viewBox="0 0 600 810" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
+        <polygon points="100,0 250,0 600,540 600,810 450,810 100,270" fill="#e8e8e6" opacity="0.7"/>
+        <polygon points="250,0 400,0 600,360 600,540" fill="#ddddd9" opacity="0.5"/>
+        <polygon points="0,0 100,0 450,810 350,810" fill="#e4e4e0" opacity="0.3"/>
+      </svg>
+    </div>
+    <div class="network-logo">NETWORK</div>
+    <div class="closing-content">
+      <h2>Let's build<br><strong>something together.</strong></h2>
+      <div class="contact-row">
+        <div class="contact-item">
+          <div class="c-label">Tel</div>
+          <div class="c-val">+65 9108 6223</div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Email</div>
+          <div class="c-val">jacobchowjj@gmail.com</div>
+        </div>
+        <div class="contact-item">
+          <div class="c-label">Web</div>
+          <div class="c-val">www.networksg.net</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
